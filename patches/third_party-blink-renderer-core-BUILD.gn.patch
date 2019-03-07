@@ -2,11 +2,13 @@ diff --git a/third_party/blink/renderer/core/BUILD.gn b/third_party/blink/render
 index a47c78114a94a9610f179a21023f638a63ca4572..bf322ff2a6b760177d2fbeee924b0091da2b9fea 100644
 --- a/third_party/blink/renderer/core/BUILD.gn
 +++ b/third_party/blink/renderer/core/BUILD.gn
-@@ -212,6 +212,7 @@ component("core") {
+@@ -212,7 +212,9 @@ component("core") {
      "//url",
      "//v8",
    ]
 +  public_deps += [ "//brave/third_party/blink/renderer" ]
    deps = [
++    "//brave/third_party/blink/brave_page_graph",
      "//third_party/blink/public/common",
      "//third_party/blink/renderer/platform",
+     "//third_party/blink/renderer/platform/wtf",
