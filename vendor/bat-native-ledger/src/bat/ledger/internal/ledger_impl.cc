@@ -1649,4 +1649,8 @@ void LedgerImpl::FetchBalance(ledger::FetchBalanceCallback callback) {
   bat_wallet_->FetchBalance(callback);
 }
 
+std::string LedgerImpl::GetUpholdToken() {
+  return "token";
+}
+
 }  // namespace bat_ledger
