@@ -1662,4 +1662,9 @@ std::string LedgerImpl::GetCardIdAddress() const {
   return bat_state_->GetCardIdAddress();
 }
 
+void LedgerImpl::GetExternalWallet(const std::string& type,
+                                   ledger::ExternalWalletCallback callback) {
+  return bat_wallet_->GetExternalWallet(type, callback);
+}
+
 }  // namespace bat_ledger
