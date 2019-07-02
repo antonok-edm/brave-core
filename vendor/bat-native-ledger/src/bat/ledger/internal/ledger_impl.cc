@@ -1630,4 +1630,10 @@ void LedgerImpl::ExternalWalletAuthorization(
       callback);
 }
 
+void LedgerImpl::DisconnectWallet(
+      const std::string& wallet_type,
+      ledger::DisconnectWalletCallback callback) {
+  bat_wallet_->DisconnectWallet(wallet_type, callback);
+}
+
 }  // namespace bat_ledger
