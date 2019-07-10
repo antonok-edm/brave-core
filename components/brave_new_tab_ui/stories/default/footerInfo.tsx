@@ -5,7 +5,7 @@
 import * as React from 'react'
 
 // Feature-specific components
-import { Link, Navigation, IconLink, PhotoName } from '../../components/default'
+import { Link, Navigation, IconLink, IconButton, PhotoName } from '../../components/default'
 
 // Icons
 import { SettingsAdvancedIcon, BookmarkBook, HistoryIcon, SettingsIcon } from 'brave-ui/components/icons'
@@ -21,6 +21,13 @@ interface Props {
 }
 
 export default class FooterInfo extends React.PureComponent<Props, {}> {
+
+  onKeyPressSettings = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      this.props.onClickSettings()
+    }
+  }
+
   render () {
     const {
       backgroundImageInfo,
@@ -41,7 +48,14 @@ export default class FooterInfo extends React.PureComponent<Props, {}> {
           </PhotoName>}
         </div>
         <Navigation>
-          <IconLink onClick={onClickSettings} disabled={isSettingsMenuOpen}><SettingsIcon /></IconLink>
+          <IconButton
+              title={getLocale('dashboardSettingsTitle')}
+              onMouseDown={onClickSettings}
+              onKeyDown={this.onKeyPressSettings}
+              clickDisabled={isSettingsMenuOpen}
+          >
+             <SettingsIcon />
+          </IconButton>
           <IconLink><SettingsAdvancedIcon /></IconLink>
           <IconLink><BookmarkBook /></IconLink>
           <IconLink><HistoryIcon /></IconLink>
