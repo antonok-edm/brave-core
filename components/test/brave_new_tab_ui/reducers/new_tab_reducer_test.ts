@@ -339,4 +339,18 @@ describe('newTabReducer', () => {
     })
   })
 
+  describe('NEW_TAB_CLOSE_SETTINGS_MENU', () => {
+    it('should set show settings to false', () => {
+      const mockState = { ...fakeState, showSettings: true }
+      const assertion = newTabReducer(mockState, {
+        type: types.NEW_TAB_CLOSE_SETTINGS_MENU
+      })
+      const expected = {
+        ...mockState,
+        showSettings: false
+      }
+      expect(assertion).toEqual(expected)
+    })
+  })
+
 })

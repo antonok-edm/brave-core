@@ -36,6 +36,7 @@ class NewTabPage extends React.Component<Props, {}> {
   componentDidMount () {
     // if a notification is open at component mounting time, close it
     this.props.actions.onHideSiteRemovalNotification()
+    this.props.actions.closeSettingsMenu()
   }
 
   onDraggedSite = (fromUrl: string, toUrl: string, dragRight: boolean) => {
@@ -90,15 +91,12 @@ class NewTabPage extends React.Component<Props, {}> {
     )
   }
 
-  showSettings = () => {
-    this.props.actions.showSettingsMenu()
-  }
-
   closeSettings = () => {
     this.props.actions.closeSettingsMenu()
   }
 
   toggleSettings = () => {
+    this.setState({})
     this.props.actions.toggleSettingsMenu()
   }
 
