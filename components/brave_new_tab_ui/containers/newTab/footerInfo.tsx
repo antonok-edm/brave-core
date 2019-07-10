@@ -22,8 +22,8 @@ interface Props {
 
 export default class FooterInfo extends React.Component<Props, {}> {
 
-  onKeyPressSettings = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
+  onKeyPressSettings = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === ' ' || event.key === 'Enter') {
       this.props.onClickSettings()
     }
   }

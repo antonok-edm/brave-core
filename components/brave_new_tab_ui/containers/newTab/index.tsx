@@ -32,11 +32,19 @@ interface Props {
   saveShowStats: (value: boolean) => void
 }
 
-class NewTabPage extends React.Component<Props, {}> {
+interface State {
+  showSettingsMenu: boolean
+}
+
+class NewTabPage extends React.Component<Props, State> {
+  constructor (props: Props) {
+    super(props)
+    this.state = { showSettingsMenu: false }
+  }
+
   componentDidMount () {
     // if a notification is open at component mounting time, close it
     this.props.actions.onHideSiteRemovalNotification()
-    this.props.actions.closeSettingsMenu()
   }
 
   onDraggedSite = (fromUrl: string, toUrl: string, dragRight: boolean) => {
@@ -91,17 +99,13 @@ class NewTabPage extends React.Component<Props, {}> {
     )
   }
 
-  closeSettings = () => {
-    this.props.actions.closeSettingsMenu()
-  }
-
   toggleSettings = () => {
-    this.setState({})
-    this.props.actions.toggleSettingsMenu()
+    this.setState({ showSettingsMenu: !this.state.showSettingsMenu })
   }
 
   render () {
     const { newTabData, actions } = this.props
+    const { showSettingsMenu } = this.state
 
     if (!newTabData || !newTabData.backgroundImage) {
       return null
@@ -144,7 +148,7 @@ class NewTabPage extends React.Component<Props, {}> {
             </Main>
           </Header>
           {
-            newTabData.showSettings &&
+            showSettingsMenu &&
             <Settings
               onClickOutside={this.toggleSettings}
               toggleShowBackgroundImage={this.toggleShowBackgroundImage}

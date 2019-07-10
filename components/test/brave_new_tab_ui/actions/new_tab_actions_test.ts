@@ -144,16 +144,4 @@ describe('newTabActions', () => {
       payload: { shouldUse }
     })
   })
-
-  it('closeSettingsMenu', () => {
-    expect(actions.closeSettingsMenu()).toEqual({
-      type: types.NEW_TAB_CLOSE_SETTINGS_MENU
-    })
-  })
-
-  it('toggleSettingsMenu', () => {
-    expect(actions.toggleSettingsMenu()).toEqual({
-      type: types.NEW_TAB_TOGGLE_SETTINGS_MENU
-    })
-  })
 })

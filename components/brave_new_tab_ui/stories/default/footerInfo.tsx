@@ -22,8 +22,8 @@ interface Props {
 
 export default class FooterInfo extends React.PureComponent<Props, {}> {
 
-  onKeyPressSettings = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === ' ' || e.key === 'Enter') {
+  onKeyPressSettings = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === ' ' || event.key === 'Enter') {
       this.props.onClickSettings()
     }
   }
@@ -49,10 +49,10 @@ export default class FooterInfo extends React.PureComponent<Props, {}> {
         </div>
         <Navigation>
           <IconButton
-              title={getLocale('dashboardSettingsTitle')}
-              onMouseDown={onClickSettings}
-              onKeyDown={this.onKeyPressSettings}
-              clickDisabled={isSettingsMenuOpen}
+            title={getLocale('dashboardSettingsTitle')}
+            onMouseDown={onClickSettings}
+            onKeyDown={this.onKeyPressSettings}
+            clickDisabled={isSettingsMenuOpen}
           >
              <SettingsIcon />
           </IconButton>
