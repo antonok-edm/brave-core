@@ -28,6 +28,7 @@
 #include "components/content_settings/core/common/content_settings_types.h"
 #include "components/prefs/pref_service.h"
 #include "extensions/common/extension_builder.h"
+#include "extensions/test/extension_test_message_listener.h"
 #include "net/dns/mock_host_resolver.h"
 
 #if BUILDFLAG(BRAVE_WALLET_ENABLED)
@@ -332,9 +333,10 @@ IN_PROC_BROWSER_TEST_F(BraveShieldsAPIBrowserTest,
 
 #if BUILDFLAG(BRAVE_WALLET_ENABLED)
 IN_PROC_BROWSER_TEST_F(BraveShieldsAPIBrowserTest, DappDetectionTest) {
+  ExtensionTestMessageListener listener("brave-extension-enabled", false);
+  ASSERT_TRUE(listener.WaitUntilSatisfied());
   EXPECT_TRUE(
       NavigateToURLUntilLoadStop("a.com", "/dapp.html"));
-
   base::RunLoop loop;
   SetQuitClosureForDappDetectionTest(loop.QuitClosure());
   loop.Run();
