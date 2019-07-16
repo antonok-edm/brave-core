@@ -53,6 +53,7 @@ export default class FooterInfo extends React.Component<Props, {}> {
       </div>
         <Navigation>
           <IconButton
+            tabIndex={1}
             title={getLocale('dashboardSettingsTitle')}
             onMouseDown={onClickSettings}
             onKeyDown={this.onKeyPressSettings}
@@ -60,13 +61,13 @@ export default class FooterInfo extends React.Component<Props, {}> {
           >
             <SettingsIcon />
           </IconButton>
-          <IconLink title={getLocale('preferencesPageTitle')} href='chrome://settings'>
+          <IconLink tabIndex={2} title={getLocale('preferencesPageTitle')} href='chrome://settings'>
             <SettingsAdvancedIcon />
           </IconLink>
-          <IconLink title={getLocale('bookmarksPageTitle')} href='chrome://bookmarks'>
+          <IconLink tabIndex={2} title={getLocale('bookmarksPageTitle')} href='chrome://bookmarks'>
             <BookmarkBook />
           </IconLink>
-          <IconLink title={getLocale('historyPageTitle')} href='chrome://history'>
+          <IconLink tabIndex={2} title={getLocale('historyPageTitle')} href='chrome://history'>
             <HistoryIcon />
           </IconLink>
         </Navigation>
