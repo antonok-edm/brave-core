@@ -17,7 +17,6 @@ import {
 } from '../../components/default'
 
 // Components
-import Settings from './settings'
 import Stats from './stats'
 import Block from './block'
 import FooterInfo from './footerInfo'
@@ -99,6 +98,10 @@ class NewTabPage extends React.Component<Props, State> {
     )
   }
 
+  closeSettings = () => {
+    this.setState({ showSettingsMenu: false })
+  }
+
   toggleSettings = () => {
     this.setState({ showSettingsMenu: !this.state.showSettingsMenu })
   }
@@ -147,10 +150,14 @@ class NewTabPage extends React.Component<Props, State> {
               }
             </Main>
           </Header>
-          {
-            showSettingsMenu &&
-            <Settings
-              onClickOutside={this.toggleSettings}
+          <Footer>
+            <FooterInfo
+              textDirection={newTabData.textDirection}
+              onClickOutside={this.closeSettings}
+              backgroundImageInfo={newTabData.backgroundImage}
+              onClickSettings={this.toggleSettings}
+              showSettingsMenu={showSettingsMenu}
+              showPhotoInfo={newTabData.showBackgroundImage}
               toggleShowBackgroundImage={this.toggleShowBackgroundImage}
               toggleShowClock={this.toggleShowClock}
               toggleShowStats={this.toggleShowStats}
@@ -159,14 +166,6 @@ class NewTabPage extends React.Component<Props, State> {
               showClock={newTabData.showClock}
               showStats={newTabData.showStats}
               showTopSites={newTabData.showTopSites}
-            />
-          }
-          <Footer>
-            <FooterInfo
-              backgroundImageInfo={newTabData.backgroundImage}
-              onClickSettings={this.toggleSettings}
-              isSettingsMenuOpen={newTabData.showSettings}
-              showPhotoInfo={newTabData.showBackgroundImage}
             />
           </Footer>
         </Page>

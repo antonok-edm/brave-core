@@ -4,13 +4,17 @@
 
 import * as React from 'react'
 
-import { SettingsMenu, SettingsRow, SettingsText, SettingsTitle, SettingsWrapper } from '../../components/default'
+import { SettingsMenu, SettingsRow, SettingsText, SettingsTitle, SettingsWrapper, IconButton } from '../../components/default'
 
 import { Toggle } from '../../components/toggle'
 
 import { getLocale } from '../fakeLocale'
+import { SettingsIcon } from 'brave-ui/components/icons'
 
 interface Props {
+  textDirection: string
+  showSettingsMenu: boolean
+  onClick: () => void
   onClickOutside: () => void
   toggleShowBackgroundImage: () => void
   toggleShowClock: () => void
@@ -45,6 +49,8 @@ export default class Settings extends React.PureComponent<Props, {}> {
 
   render () {
     const {
+      textDirection,
+      showSettingsMenu,
       toggleShowBackgroundImage,
       toggleShowClock,
       toggleShowStats,
@@ -52,46 +58,50 @@ export default class Settings extends React.PureComponent<Props, {}> {
       showBackgroundImage,
       showStats,
       showClock,
-      showTopSites
+      showTopSites,
+      onClick
     } = this.props
     return (
-      <SettingsWrapper>
-        <SettingsMenu innerRef={this.settingsMenuRef}>
-          <SettingsTitle>{getLocale('dashboardSettings')}</SettingsTitle>
-          <SettingsRow>
-            <SettingsText>{getLocale('showBackgroundImg')}</SettingsText>
-            <Toggle
-              onChange={toggleShowBackgroundImage}
-              checked={showBackgroundImage}
-              size='small'
-            />
-          </SettingsRow>
-          <SettingsRow>
-            <SettingsText>{getLocale('showBraveStats')}</SettingsText>
-            <Toggle
-              onChange={toggleShowStats}
-              checked={showStats}
-              size='small'
-            />
-          </SettingsRow>
-          <SettingsRow>
-            <SettingsText>{getLocale('showClock')}</SettingsText>
-            <Toggle
-              onChange={toggleShowClock}
-              checked={showClock}
-              size='small'
-            />
-          </SettingsRow>
-          <SettingsRow>
-            <SettingsText>{getLocale('showTopSites')}</SettingsText>
-            <Toggle
-              onChange={toggleShowTopSites}
-              checked={showTopSites}
-              size='small'
-            />
-          </SettingsRow>
+      <SettingsWrapper innerRef={this.settingsMenuRef}>
+        <IconButton onClick={onClick}><SettingsIcon/></IconButton>
+        {showSettingsMenu &&
+          <SettingsMenu textDirection={textDirection}>
+            <SettingsTitle>{getLocale('dashboardSettingsTitle')}</SettingsTitle>
+            <SettingsRow>
+              <SettingsText>{getLocale('showBackgroundImg')}</SettingsText>
+              <Toggle
+                onChange={toggleShowBackgroundImage}
+                checked={showBackgroundImage}
+                size='small'
+              />
+            </SettingsRow>
+            <SettingsRow>
+              <SettingsText>{getLocale('showBraveStats')}</SettingsText>
+              <Toggle
+                onChange={toggleShowStats}
+                checked={showStats}
+                size='small'
+              />
+            </SettingsRow>
+            <SettingsRow>
+              <SettingsText>{getLocale('showClock')}</SettingsText>
+              <Toggle
+                onChange={toggleShowClock}
+                checked={showClock}
+                size='small'
+              />
+            </SettingsRow>
+            <SettingsRow>
+              <SettingsText>{getLocale('showTopSites')}</SettingsText>
+              <Toggle
+                onChange={toggleShowTopSites}
+                checked={showTopSites}
+                size='small'
+              />
+            </SettingsRow>
         </SettingsMenu>
-      </SettingsWrapper>
+      }
+    </SettingsWrapper>
     )
   }
 }

@@ -64,6 +64,8 @@ export const gridSitesUpdated = (gridSites: NewTab.Site[]) => action(types.NEW_T
 
 export const statsUpdated = () => action(types.NEW_TAB_STATS_UPDATED)
 
+export const textDirectionUpdated = (textDirection: string) => action(types.NEW_TAB_TEXT_DIRECTION_UPDATED, textDirection)
+
 export const changePrivateSearchEngine = (shouldUse: boolean) => action(types.NEW_TAB_USE_ALTERNATIVE_PRIVATE_SEARCH_ENGINE, {
   shouldUse
 })

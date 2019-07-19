@@ -62,7 +62,6 @@ export class Toggle extends React.PureComponent<Props, ToggleState> {
     return (
         <StyledWrapper checked={checked} data-test-id={testId} size={size}>
           <StyledCheckbox
-            tabIndex={2}
             type='checkbox'
             id={id}
             readOnly={readOnly}
