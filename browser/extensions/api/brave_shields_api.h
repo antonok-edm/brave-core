@@ -10,6 +10,16 @@
 namespace extensions {
 namespace api {
 
+class BraveShieldsBaseStylesheetFunction : public UIThreadExtensionFunction {
+ public:
+  DECLARE_EXTENSION_FUNCTION("braveShields.baseStylesheet", UNKNOWN)
+
+ protected:
+  ~BraveShieldsBaseStylesheetFunction() override;
+
+  ResponseAction Run() override;
+};
+
 class BraveShieldsAllowScriptsOnceFunction : public UIThreadExtensionFunction {
  public:
   DECLARE_EXTENSION_FUNCTION("braveShields.allowScriptsOnce", UNKNOWN)

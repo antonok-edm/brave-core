@@ -49,6 +49,21 @@
             "parameters": []
           }
         ]
+      },
+      {
+        "name": "baseStylesheet",
+        "type": "function",
+        "description": "Get the base cosmetic adblocking stylesheet",
+        "parameters": [
+          {
+            "name": "hostname",
+            "type": "string"
+          },
+          {
+            "name": "domain",
+            "type": "string"
+          }
+        ]
       }
     ],
     "types": [

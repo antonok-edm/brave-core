@@ -28,6 +28,8 @@
 #include "content/public/browser/web_contents.h"
 #include "extensions/browser/extension_util.h"
 
+#include <iostream>
+
 using brave_shields::BraveShieldsWebContentsObserver;
 
 namespace Get = extensions::api::brave_shields::ContentSetting::Get;
@@ -54,6 +56,22 @@ bool RemoveContentType(base::ListValue* args,
 
 namespace extensions {
 namespace api {
+
+BraveShieldsBaseStylesheetFunction::~BraveShieldsBaseStylesheetFunction() {
+}
+
+ExtensionFunction::ResponseAction BraveShieldsBaseStylesheetFunction::Run() {
+  std::unique_ptr<brave_shields::BaseStylesheet::Params> params(
+      brave_shields::BaseStylesheet::Params::Create(*args_));
+  EXTENSION_FUNCTION_VALIDATE(params.get());
+  //return RespondNow(OneArgument(std::make_unique<base::Value>(&stylesheet_str)));
+  std::cout << "hostname is " << params->hostname << ", domain is " << params->domain << std::endl;
+
+  std::unique_ptr<base::Value> arbitrary = std::make_unique<base::Value>("arbitrary string");
+  std::cout << *arbitrary << ", type is " << arbitrary->type() << std::endl;
+  return RespondNow(OneArgument(std::move(arbitrary)));
+}
+
 
 BraveShieldsAllowScriptsOnceFunction::~BraveShieldsAllowScriptsOnceFunction() {
 }

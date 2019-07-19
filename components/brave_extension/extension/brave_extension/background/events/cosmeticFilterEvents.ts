@@ -31,6 +31,12 @@ chrome.contextMenus.create({
   parentId: 'brave',
   contexts: ['all']
 })
+chrome.contextMenus.create({
+    title: 'Test option',
+    id: 'testOperation',
+    parentId: 'brave',
+    contexts: ['all']
+})
 // context menu listener emit event -> query -> tabsCallback -> onSelectorReturned
 
 chrome.contextMenus.onClicked.addListener((info: chrome.contextMenus.OnClickData, tab: chrome.tabs.Tab) => {
@@ -60,6 +66,12 @@ export function onContextMenuClicked (info: chrome.contextMenus.OnClickData, tab
     case 'resetAllFilterSettings': {
       cosmeticFilterActions.allCosmeticFiltersRemoved()
       break
+    }
+    case 'testOperation': {
+        console.log("test operation specified");
+        console.log(chrome.braveShields.baseStylesheet("hostname argument", "domain argument"));
+        console.log("test operation completed");
+        break
     }
     default: {
       console.warn('[cosmeticFilterEvents] invalid context menu option: ${info.menuItemId}')
